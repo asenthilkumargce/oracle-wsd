@@ -6,7 +6,7 @@
 	version="3.0">
 	<display-name>WSD</display-name>
 	
-	<listener>
+<!-- 	<listener>
         <listener-class>
             com.sun.xml.ws.transport.http.servlet.WSServletContextListener
         </listener-class>
@@ -23,7 +23,44 @@
 <servlet-mapping>
         <servlet-name>xyz</servlet-name>
         <url-pattern>/client</url-pattern>
-</servlet-mapping>
-	
+</servlet-mapping> -->
+
+<!--  
+    <listener>
+        <listener-class>
+            com.sun.xml.ws.transport.http.servlet.WSServletContextListener
+        </listener-class>
+    </listener>
+
+    <servlet>
+        <display-name>HelloService</display-name>
+        <servlet-name>HelloService</servlet-name>
+        <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HelloService</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+
+    <security-constraint>
+        <display-name>SecurityConstraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>WRCollection</web-resource-name>
+            <url-pattern>/hello</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>basicUser</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+    <login-config>
+        <auth-constraint>BASIC</auth-constraint>
+        <realm-name>file</realm-name>
+    </login-config>
+-->	
 	
 </web-app>

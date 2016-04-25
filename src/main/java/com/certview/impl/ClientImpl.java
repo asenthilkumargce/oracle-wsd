@@ -4,12 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.annotation.security.RolesAllowed;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.Style;
-import javax.servlet.ServletContext;
 import javax.xml.ws.WebServiceContext;
-import javax.xml.ws.handler.MessageContext;
 
 import com.certview.repository.Client;
 import com.certview.service.ClientService;
@@ -23,19 +22,8 @@ public class ClientImpl implements ClientService {
   @Resource
   private WebServiceContext webServiceContext;
 
-//  @Override
-  public String client() {
-    MessageContext mc = webServiceContext.getMessageContext();
-    ServletContext servletContext = (ServletContext) mc.get(MessageContext.SERVLET_CONTEXT);
-    return "";
-  }
-
-//  @Override
-//  public List<Client> list() {
-//    return clients;
-//  }
-
   @Override
+  @RolesAllowed("basicUser")
   public Client getByCode(String code) {
     for(Client client : clients){
       if(code.equals(client.getCode()))
