@@ -30,6 +30,18 @@ public class EmployeeImpl implements EmployeeService {
         );
   }
   
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public Employee getTest2() {
+    return new Employee("007", "Thiago");
+}
+  
+  @Produces(MediaType.APPLICATION_XML)
+  @GET
+  public List<Employee> getTest() {
+    return employees;
+  }
+  
   
   @Override
   @Produces(MediaType.APPLICATION_JSON)
