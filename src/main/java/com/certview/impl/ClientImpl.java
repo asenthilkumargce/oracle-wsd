@@ -4,31 +4,51 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.annotation.security.RolesAllowed;
+import javax.jws.Oneway;
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
 import javax.jws.WebService;
-import javax.jws.soap.SOAPBinding;
-import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.WebServiceContext;
 
 import com.certview.repository.Client;
 import com.certview.service.ClientService;
 
 @WebService
-@SOAPBinding(style = Style.RPC)
 public class ClientImpl implements ClientService {
 
-  final List<Client> clients = Arrays.asList(new Client("1","Google"),new Client("2","IBM"),new Client("3","SalesForce")); 
+  final List<Client> clients;
+  
+  {
+    clients = Arrays.asList(new Client("1","Google"),new Client("2","IBM"),new Client("3","SalesForce"));
+  }
+  
   
   @Resource
   private WebServiceContext webServiceContext;
 
   @Override
-  @RolesAllowed("basicUser")
-  public Client getByCode(String code) {
+  @WebMethod
+  @WebResult(name="Cliente por codigo")
+  public Client getByCode(@WebParam(name = "testName") String code) {
     for(Client client : clients){
       if(code.equals(client.getCode()))
         return client;
     }
     return null;
+  }
+
+  @Override
+  @WebMethod
+  @WebResult(name="Lista de Clientes")
+  public List<Client> list() {
+    return clients;
+  }
+
+  @Override
+  @Oneway // it means doesnt have return - see wsdl 
+  @WebMethod
+  public void insertClient() {
+    System.out.println("test");
   }
 }

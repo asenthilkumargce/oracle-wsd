@@ -62,5 +62,21 @@
         <realm-name>file</realm-name>
     </login-config>
 -->	
+
+		<!-- Adapt to work on restful -->
+		<servlet>
+			<servlet-name>jersey-serlvet</servlet-name>
+			<servlet-class>
+				com.sun.jersey.spi.container.servlet.ServletContainer
+			</servlet-class>
+			<load-on-startup>1</load-on-startup>
+		</servlet>
+		
+		<!-- service restful -->
+
+		<servlet-mapping>
+			<servlet-name>jersey-serlvet</servlet-name>
+			<url-pattern>/*</url-pattern>
+		</servlet-mapping>
 	
 </web-app>
